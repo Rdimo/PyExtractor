@@ -35,9 +35,8 @@ Love ❌ code ✅
 
 ## 🔰 〢 Features
 
-✔ Fully Decompiles executables compiled with `pyinstaller` or `py2exe` \
+✔ Fully Decompiles executables compiled with `pyinstaller` or `py2exe` (.exe --> .py) \
 ✔ Decrypts `Encrypted pyinstaller executables` and detects `pyarmor` \
-✔ From .exe --> .py \
 ✔ Configurable with json config \
 ✔ Exe must **NOT** be compiled with a python compiler in order for PyExtractor to check it\
 ✔ Checks file(s) for suspicious words, discord webhooks, discord invites, pastebins, urls, ips etc..\
