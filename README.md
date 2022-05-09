@@ -11,7 +11,7 @@
 <p align="center">
   <img src="https://img.shields.io/github/languages/top/Rdimo/PyExtractor?style=flat-square"/>
   <img src="https://img.shields.io/github/last-commit/Rdimo/PyExtractor?style=flat-square"/>
-  <img src="https://sonarcloud.io/api/project_badges/measure?project=PyExtractor&metric=ncloc"/>
+  <img src="https://sonarcloud.io/api/project_badges/measure?project=Rdimo_PyExtractor&metric=ncloc"/>
   <img src="https://img.shields.io/github/stars/Rdimo/PyExtractor?color=9acd32&label=Stars&style=flat-square"/>
   <img src="https://img.shields.io/github/forks/Rdimo/PyExtractor?color=9acd32&label=Forks&style=flat-square"/>
 </p>
