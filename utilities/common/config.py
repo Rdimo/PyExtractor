@@ -41,12 +41,12 @@ class Config(object):
             )
 
     @classmethod
-    def get_setting(self, setting):
-        with open(self.config_dir) as json_:
+    def get_setting(cls, setting):
+        with open(cls.config_dir) as json_:
             data = json.load(json_)
         # if the config has empty dict in it
         if not bool(data):
             printWarn(
-                f'config.json is empty! Applying defaults --> {self.config_dir}')
-            self.create_config()
+                f'config.json is empty! Applying defaults --> {cls.config_dir}')
+            cls.create_config()
         return data[setting]

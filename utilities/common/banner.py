@@ -15,7 +15,7 @@ __________                  __                        __
     blue = 0
     for line in banner.splitlines():
         faded_banner += (f"\033[38;2;0;255;{blue}m{line}\033[0m\n")
-        if not blue == 255:
+        if blue != 255:
             blue += 60
             if blue > 255:
                 blue = 255
@@ -29,7 +29,7 @@ def fade(text: str) -> str:
     green = 194
     for line in text:
         faded += (f"\033[38;2;0;{green};199m{line}\033[0m")
-        if not green == 0:
+        if green != 0:
             green -= 6
             if green < 0:
                 green = 0

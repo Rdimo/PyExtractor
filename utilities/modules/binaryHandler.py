@@ -37,7 +37,7 @@ class BinaryHandler(object):
             self.fileSize = os.stat(self.file_path).st_size
         except FileNotFoundError:
             printErr(f"Can't find {self.file_path} on your device")
-            Logging.logClose()
+            Logging.log_close()
         except Exception:
             printWarn(f'Having Trouble opening {self.file_path}')
             sleep(1)
@@ -54,19 +54,19 @@ class BinaryHandler(object):
         printInfo(f'Processing {_file}')
         if not os.path.exists(_file):
             printErr(f'can\'t find "{_file}" on your device')
-            Logging.logClose()
+            Logging.log_close()
         if not _file.endswith('.exe'):
             printErr(f'"{_file}" needs to be a file!')
-            Logging.logClose()
+            Logging.log_close()
         if not os.path.isfile(_file):
             printErr(f'"{_file}" needs to be a file!')
-            Logging.logClose()
+            Logging.log_close()
         try:
             pe_file = pefile.PE(_file)
             if not (pe_file.is_dll() or pe_file.is_exe()):
                 printErr(f'"{_file}" is not an executable!')
-                Logging.logClose()
+                Logging.log_close()
         except Exception as e:
             printErr(f'Error occured while validating {_file}')
             printErrStack(e)
-            Logging.logClose()
+            Logging.log_close()

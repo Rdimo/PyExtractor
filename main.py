@@ -184,7 +184,7 @@ def main(file_name: str):
     pyinstaller.close()
     py2exe.close()
 
-    Logging.logClose()
+    Logging.log_close()
 
 
 if __name__ == "__main__":
@@ -199,7 +199,7 @@ if __name__ == "__main__":
         sys.exit(-1)
 
     def handler(signal, frame):
-        Logging.logClose(exit_code='Goodbye!')
+        Logging.log_close(exit_code='Goodbye!')
     signal(SIGINT, handler)
     print(banner())
     _file = input('Drag/Type your executable here: ').strip('"').strip("'")

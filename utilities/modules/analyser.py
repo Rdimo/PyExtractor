@@ -109,7 +109,6 @@ class Analyse(object):
             for _type, regex in self.regex.items():
                 results = regex.finditer(content, re.IGNORECASE)
                 for match in results:
-                    # obj = 'Found '+_type+f': {match.group()}'
                     obj = match.group()
                     if _type == "sus word":
                         if obj not in self.found_sus_words:

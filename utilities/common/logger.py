@@ -10,51 +10,36 @@ _file = open(logFile, 'a')
 
 class Logging:
     @classmethod
-    def stamp(self, stmp):
+    def stamp(cls, stmp):
         from utilities import Config
         return f'{f"{time.ctime()} ::" if Config.get_setting("time_stamp_logging") else ""} [{stmp}]'
 
     @classmethod
-    def typeCheck(self, _type: TypeAlias = Literal["success", "info", "normal", "warn", "error", "error_stack"]):
+    def type_check(cls, _type: TypeAlias = Literal["success", "info", "normal", "warn", "error", "error_stack"]):
         if _type == "success":
-            return self.stamp('#')
+            return cls.stamp('#')
         elif _type == "info":
-            return self.stamp('*')
+            return cls.stamp('*')
         elif _type == "warn":
-            return self.stamp('!')
+            return cls.stamp('!')
         elif _type == "error":
-            return self.stamp('x')
+            return cls.stamp('x')
         elif _type == "error_stack":
-            return self.stamp('X')
+            return cls.stamp('X')
         elif _type == "normal":
-            return self.stamp('')
+            return cls.stamp('')
         else:
-            return self.stamp('*')
-        # match(_type):
-        #     case "success":
-        #         return self.stamp('#')
-        #     case "info":
-        #         return self.stamp('*')
-        #     case "warn":
-        #         return self.stamp('!')
-        #     case "error":
-        #         return self.stamp('x')
-        #     case "error_stack":
-        #         return self.stamp('X')
-        #     case "normal":
-        #         return self.stamp('')
-        #     case _:
-        #         return self.stamp('*')
+            return cls.stamp('*')
 
     @staticmethod
-    def fileLog(text, stamp, newLine=True):
+    def file_log(text, stamp, newLine=True):
         _file.write(str(stamp))
         _file.write(str(text))
         if newLine:
             _file.write('\n')
 
     @staticmethod
-    def logClose(exit_code=1) -> NoReturn:
+    def log_close(exit_code=1) -> NoReturn:
         _file.write('Finished'.center(60, "-"))
         _file.write('\n'*2)
         _file.close()
@@ -65,7 +50,7 @@ def logger(_type: TypeAlias = Literal["success", "info", "normal", "warn", "erro
     def decorator(func):
         def wrapper(*args, **kwargs):
             func(*args, **kwargs)
-            Logging.fileLog(*args, Logging.typeCheck(_type))
+            Logging.file_log(*args, Logging.type_check(_type))
         return wrapper
     return decorator
 
