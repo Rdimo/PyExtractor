@@ -4,10 +4,10 @@ import sys
 import zlib
 import struct
 import marshal
+import pathlib
 from uuid import uuid4 as uniquename
-from importlib.util import MAGIC_NUMBER
+from importlib.util import MAGIC_NUMBER as pyc_magic
 from utilities import printInfo, printWarn, printErr
-pyc_magic = MAGIC_NUMBER
 
 
 class CTOCEntry:
@@ -167,8 +167,10 @@ class PyInstArchive():
         extractionDir = os.path.join(os.getcwd(), base, 'Extracted')
 
         if not os.path.exists(extractionDir):
-            os.makedirs(extractionDir)
-
+            try:
+                os.mkdir(extractionDir)
+            except FileNotFoundError:
+                pathlib.Path(extractionDir).mkdir(parents=True)
         os.chdir(extractionDir)
 
         for entry in self.tocList:
@@ -220,7 +222,10 @@ class PyInstArchive():
     def _extractPyz(self, name):
         dirName = name + '_extracted'
         if not os.path.exists(dirName):
-            os.makedirs(dirName)
+            try:
+                os.mkdir(dirName)
+            except FileNotFoundError:
+                pathlib.Path(dirName).mkdir(parents=True)
 
         with open(name, 'rb') as f:
             pyzMagic = f.read(4)
