@@ -18,7 +18,9 @@
 
 <h4 align="center">
   <a href="https://cheataway.com">🌌・Discord</a>
-  <a href="https://github.com/Rdimo/PyExtractor#getting-started-with-PyExtractor">🐍・Getting started</a>
+  ⋮
+  <a href="https://github.com/Rdimo/PyExtractor#getting-started-with-pyextractor">🐍・Getting started</a>
+  ⋮
   <a href="https://github.com/Rdimo/PyExtractor#changelog">📜・ChangeLog</a>
 </h4>
 
@@ -31,7 +33,7 @@ Love ❌ code ✅
 
 ---
 
-## :fire: Features
+## 🔰〢Features
 
 ✔ Fully Decompiles executables compiled with `pyinstaller` or `py2exe` \
 ✔ From .exe --> .py \
