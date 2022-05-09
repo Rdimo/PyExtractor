@@ -9,11 +9,11 @@
 </p>
 
 <p align="center">
-  <img src="https://img.shields.io/github/languages/top/Rdimo/PyExtractor?style=flat-square" </a>
-  <img src="https://img.shields.io/github/last-commit/Rdimo/PyExtractor?style=flat-square" </a>
-  <img src="https://sonarcloud.io/api/project_badges/measure?project=PyExtractor&metric=ncloc" </a>
-  <img src="https://img.shields.io/github/stars/Rdimo/PyExtractor?color=9acd32&label=Stars&style=flat-square" </a>
-  <img src="https://img.shields.io/github/forks/Rdimo/PyExtractor?color=9acd32&label=Forks&style=flat-square" </a>
+  <img src="https://img.shields.io/github/languages/top/Rdimo/PyExtractor?style=flat-square"/>
+  <img src="https://img.shields.io/github/last-commit/Rdimo/PyExtractor?style=flat-square"/>
+  <img src="https://sonarcloud.io/api/project_badges/measure?project=PyExtractor&metric=ncloc"/>
+  <img src="https://img.shields.io/github/stars/Rdimo/PyExtractor?color=9acd32&label=Stars&style=flat-square"/>
+  <img src="https://img.shields.io/github/forks/Rdimo/PyExtractor?color=9acd32&label=Forks&style=flat-square"/>
 </p>
 
 <h4 align="center">
@@ -45,7 +45,9 @@ Love ❌ code ✅
 
 ---
 
-## 🐍・Getting started with PyExtractor!
+<img src="https://raw.githubusercontent.com/Rdimo/images/master/PyExtractor/preview.png"/>
+
+## 🐍 〢 Getting started with PyExtractor!
 
 First go ahead and download [Git](https://git-scm.com)
 
@@ -91,18 +93,18 @@ Make sure to open [config.json](https://github.com/Rdimo/PyExtractor/blob/master
 }
 ```
 
-## 🎉・ideas/todo?
+## 🎉 〢 ideas/todo?
 
 - Check for more things
 - Better malware recognizer
 - Remove chdir
 - More config options
 
-## 💭・ChangeLog
+## 💭 〢 ChangeLog
 
 ```diff
 v0.0.2 ⋮ 2022-05-09
-+ bug fixes
++ Bug fixes
 
 v0.0.1 ⋮ 2022-05-09
 + Official release
