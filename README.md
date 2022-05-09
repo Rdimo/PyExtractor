@@ -33,9 +33,10 @@ Love ❌ code ✅
 
 ---
 
-## 🔰〢Features
+## 🔰 〢 Features
 
 ✔ Fully Decompiles executables compiled with `pyinstaller` or `py2exe` \
+✔ Decrypts `Encrypted pyinstaller executables` and detects `pyarmor` \
 ✔ From .exe --> .py \
 ✔ Configurable with json config \
 ✔ Exe must **NOT** be compiled with a python compiler in order for PyExtractor to check it\
