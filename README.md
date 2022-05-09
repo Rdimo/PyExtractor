@@ -45,7 +45,7 @@ Love ❌ code ✅
 
 ---
 
-<img src="https://raw.githubusercontent.com/Rdimo/images/master/PyExtractor/preview.png" height="860px" width="100%"/>
+<img src="https://raw.githubusercontent.com/Rdimo/images/master/PyExtractor/preview.png" height="400" width="850"/>
 
 ## 🐍 〢 Getting started with PyExtractor!
 
