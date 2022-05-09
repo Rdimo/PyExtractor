@@ -101,6 +101,9 @@ Make sure to open [config.json](https://github.com/Rdimo/PyExtractor/blob/master
 ## 💭・ChangeLog
 
 ```diff
+v0.0.2 ⋮ 2022-05-09
++ bug fixes
+
 v0.0.1 ⋮ 2022-05-09
 + Official release
 ```
