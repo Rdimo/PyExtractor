@@ -47,32 +47,38 @@ Love ❌ code ✅
 
 ## 🐍・Getting started with PyExtractor!
 
-If you don't [Git](https://git-scm.com) to start off!
+First go ahead and download [Git](https://git-scm.com)
 
 ```sh-session
 git@2.17.1 or higher
 ```
 
-##### 1. From your command line, clone and configure PyExtractor:
+Open cmd in a chosen directory and do the following:
 
-```bash
-# Clone this repository
+```sh-session
 $ git clone https://github.com/Rdimo/PyExtractor.git
+...
+$ cd .\PyExtractor
+$ start setup.bat
+...
+$ echo Done!
 ```
 
-or
+### or
 
 ```bash
 # Downloading as zip
-$ press big green code button
-$ press download ZIP
+$ Press big green code button top right of the screen
+$ Press download ZIP
+$ Drag the zip out to your desktop or some other place
+$ Extract it. . .
+...
+$ Open the extracted folder
+$ Run setup.bat
+$ Done!
 ```
 
-[forking](https://github.com/Rdimo/PyExtractor/fork) this repo is also a viable way
-
-##### 2. after you've extracted the zip file:
-
-Make to open [config.json](https://github.com/Rdimo/PyExtractor/blob/master/config.json) and change the settings to your preferences ⇣⇣⇣
+Make sure to open [config.json](https://github.com/Rdimo/PyExtractor/blob/master/config.json) and change the settings to your preferences ⇣⇣⇣
 
 ```json
 {
