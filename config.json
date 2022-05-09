@@ -1,0 +1,8 @@
+{
+  "detailed_logs": false,
+  "error_stack_logs": true,
+  "time_stamp_logging": true,
+
+  "analyse_file": true,
+  "malware_recognize": true
+}
