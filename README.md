@@ -19,9 +19,9 @@
 <h4 align="center">
   <a href="https://cheataway.com">🌌・Discord</a>
   ⋮
-  <a href="https://github.com/Rdimo/PyExtractor#getting-started-with-pyextractor">🐍・Getting started</a>
+  <a href="https://github.com/Rdimo/PyExtractor#-%E3%80%A2-getting-started-with-pyextractor">🐍・Getting started</a>
   ⋮
-  <a href="https://github.com/Rdimo/PyExtractor#changelog">📜・ChangeLog</a>
+  <a href="https://github.com/Rdimo/PyExtractor#-%E3%80%A2-changelog">📜・ChangeLog</a>
 </h4>
 
 <h2 align="center">
