@@ -1,4 +1,4 @@
-just test files, all of these files have
+just test files for PyExtractor to decompile and process, all of these files have
 
 ```py
 from time import sleep
