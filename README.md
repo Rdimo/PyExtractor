@@ -89,7 +89,7 @@ Make to open [config.json](https://github.com/Rdimo/PyExtractor/blob/master/conf
 
 - Check for more things
 - Better malware recognizer
-- Fix
+- Remove chdir
 - More config options
 
 ## 💭・ChangeLog
