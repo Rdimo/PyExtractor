@@ -167,7 +167,7 @@ class PyInstArchive():
         extractionDir = os.path.join(os.getcwd(), base, 'Extracted')
 
         if not os.path.exists(extractionDir):
-            os.mkdir(extractionDir)
+            os.makedirs(extractionDir)
 
         os.chdir(extractionDir)
 
@@ -220,7 +220,7 @@ class PyInstArchive():
     def _extractPyz(self, name):
         dirName = name + '_extracted'
         if not os.path.exists(dirName):
-            os.mkdir(dirName)
+            os.makedirs(dirName)
 
         with open(name, 'rb') as f:
             pyzMagic = f.read(4)
