@@ -41,7 +41,7 @@ class Logging:
     @staticmethod
     def log_close(exit_code=1) -> NoReturn:
         _file.write('Finished'.center(60, "-"))
-        _file.write('\n'*2)
+        _file.write('\n' * 2)
         _file.close()
         sys.exit(exit_code)
 
@@ -94,5 +94,4 @@ def printErrStack(msg):
             val = v.strip(' ')
             if val:
                 print(":   {}".format(val))
-        # print(f':   {msg.__doc__}')
         print("{}".format(bracket(_type='X', col=colors.red)))

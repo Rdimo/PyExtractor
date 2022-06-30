@@ -40,9 +40,8 @@ class Analyse(object):
         _path = path.abspath(path.join(path.abspath(
             path.join(path.dirname(__file__), pardir)), pardir))
         _folder = path.join(_path, filename)
-        jsonfile = path.join(_folder, filename+'.json')
-        printInfo(
-            f'Fetching general info about {filename}. . .')
+        jsonfile = path.join(_folder, filename + '.json')
+        printInfo(f'Fetching general info about {filename} (might take some time)')
         self.get_detailes()
         self.get_sections()
 
@@ -65,41 +64,47 @@ class Analyse(object):
         req = self.malware_recognizer()
         if req:
             self.datastruct.update(req)
-        with open(jsonfile, 'w', errors="ignore") as f:
-            json.dump(
-                self.datastruct, f,
-                ensure_ascii=False,
-                indent=4,
-                sort_keys=True
-            )
+        try:
+            with open(jsonfile, 'w', errors="ignore") as f:
+                json.dump(
+                    self.datastruct, f,
+                    ensure_ascii=False,
+                    indent=4,
+                    sort_keys=True
+                )
+        except FileNotFoundError:
+            open(jsonfile, "w").close()
+
         if self.found_sus_words:
-            printErr(
-                f'Suspiciou{"s" if len(self.found_sus_words) > 1 else ""} words found!:')
+            printErr(f'Suspiciou{"s" if len(self.found_sus_words) > 1 else ""} words found!:')
             for item in self.found_sus_words:
                 printWarn(f"  {item}")
+
         if self.found_links:
             printErr(f'Url{"s" if len(self.found_links) > 1 else ""} found!:')
             for item in self.found_links:
                 printWarn(f"  {item}")
+
         if self.found_ips:
             printErr(f'IP{"s" if len(self.found_ips) > 1 else ""} found!:')
             for item in self.found_ips:
                 printWarn(f"  {item}")
+
         if self.found_invites:
-            printErr(
-                f'Discord invite{"s" if len(self.found_invites) > 1 else ""} found!:')
+            printErr(f'Discord invite{"s" if len(self.found_invites) > 1 else ""} found!:')
             for item in self.found_invites:
                 printWarn(f"  {item}")
+
         if self.found_pastebins:
-            printErr(
-                f'Pastebin{"s" if len(self.found_pastebins) > 1 else ""} found!:')
+            printErr(f'Pastebin{"s" if len(self.found_pastebins) > 1 else ""} found!:')
             for item in self.found_pastebins:
                 printWarn(f"  {item}")
+
         if self.found_webhooks:
-            printErr(
-                f'Discord webhook{"s" if len(self.found_webhooks) > 1 else ""} found!:')
+            printErr(f'Discord webhook{"s" if len(self.found_webhooks) > 1 else ""} found!:')
             for item in self.found_webhooks:
                 printWarn(f"  {item}")
+
         printInfo(f'Dumped file structure --> {jsonfile}')
 
     def search_files(self, loc, is_folder=True):
@@ -135,12 +140,9 @@ class Analyse(object):
                     for _path in files:
                         if not path.exists(_path):
                             continue
-                        process = threading.Thread(
-                            target=search, args=(_path, ), daemon=True)
+                        threading.Thread(target=search, args=(_path, ), daemon=True).start()
             else:
-                process = threading.Thread(
-                    target=search, args=(loc, ), daemon=True)
-            process.start()
+                threading.Thread(target=search, args=(loc, ), daemon=True).start()
             for t in threading.enumerate():
                 try:
                     t.join()

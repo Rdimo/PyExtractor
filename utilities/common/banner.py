@@ -1,7 +1,9 @@
 import os
+import sys
 
 
 def banner() -> str:
+    sys.stdout.write("\x1b[8;{rows};{cols}t".format(rows=32, cols=130))
     banner = r"""
 __________                  __                        __                
 \______   \___.__.___  ____/  |_____________    _____/  |_  ___________ 

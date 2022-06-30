@@ -35,9 +35,11 @@ class BinaryHandler(object):
 
             self.fPtr = open(self.file_path, 'rb')
             self.fileSize = os.stat(self.file_path).st_size
+
         except FileNotFoundError:
             printErr(f"Can't find {self.file_path} on your device")
             Logging.log_close()
+
         except Exception:
             printWarn(f'Having Trouble opening {self.file_path}')
             sleep(1)
@@ -55,12 +57,15 @@ class BinaryHandler(object):
         if not os.path.exists(_file):
             printErr(f'can\'t find "{_file}" on your device')
             Logging.log_close()
-        if not _file.endswith('.exe'):
-            printErr(f'"{_file}" needs to be a file!')
-            Logging.log_close()
+
         if not os.path.isfile(_file):
             printErr(f'"{_file}" needs to be a file!')
             Logging.log_close()
+
+        if not _file.endswith('.exe'):
+            printErr(f'"{_file}" needs to be an executable!')
+            Logging.log_close()
+
         try:
             pe_file = pefile.PE(_file)
             if not (pe_file.is_dll() or pe_file.is_exe()):

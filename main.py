@@ -1,4 +1,5 @@
 import os
+import shutil
 import sys
 import zlib
 import struct
@@ -36,7 +37,7 @@ class PyInstaller(BinaryHandler):
                 config.read_file(ini_str)
                 temp_key = config.get("secret", "key")
 
-                encryption_key = temp_key[1:len(temp_key)-1]
+                encryption_key = temp_key[1:len(temp_key) - 1]
                 return encryption_key
             return None
         except Exception as e:
@@ -144,38 +145,41 @@ class Py2Exe(BinaryHandler):
                     printInfo(f'Compiled with Python {ver}')
                     ver = int(ver)
         if not isinstance(ver, int):
-            ver = sys.version_info.major+sys.version_info.minor
+            ver = sys.version_info.major + sys.version_info.minor
         return ver
 
-    def unpack(self, filename, py_version):
+    def unpack(self, filename):
         try:
-            unpy2exe(filename, py_version, self.extraction_dir)
+            unpy2exe(filename, self.extraction_dir)
         except Exception as e:
             # python 2 and 3 marshal data differently and has different implementation and unfortunately unpy2exe depends on marshal.
-            printErr(
-                'Failed to unpack. Most likely due to version incompability (exe created using python 2)')
+            printErr('Failed to unpack. Most likely due to version incompability (exe created using python 2)')
             printErrStack(e)
 
 
-def main(file_name: str):
-    BinaryHandler.check(file_name)  # check for invalid input
+def main(file_path: str):
+    BinaryHandler.check(file_path)  # check for invalid input
 
-    output = os.path.basename(file_name)
+    output = os.path.basename(file_path)
+    if os.path.exists(os.path.join(os.getcwd(), output)) and not os.path.isdir(os.path.join(os.getcwd(), output)):
+        printErr(f'{output} is in the current directory. Please move it to somewhere else so PyExtractor can properly analyze it.')
+        Logging.log_close()
+
     # construct the classes
     Config()
-    analyse = Analyse(file_name)
-    pyinstaller = PyInstaller(file_name, output)
-    py2exe = Py2Exe(file_name, output)
+    analyse = Analyse(file_path)
+    pyinstaller = PyInstaller(file_path, output)
+    py2exe = Py2Exe(file_path, output)
 
     # check if it's pyinstaller or py2exe which PyExtractor can unpack
     if pyinstaller.magic_recogniser():
         printInfo(f'{output} was compiled with pyinstaller')
-        pyinstaller.unpack(file_name)
+        pyinstaller.unpack(file_path)
         analyse.start()
 
     elif py2exe.magic_recogniser():
         printInfo(f'{output} was compiled with py2exe')
-        py2exe.unpack(file_name, py2exe.pyver())
+        py2exe.unpack(file_path)
         analyse.start()
     else:
         printWarn('Unrecognizable packer, proceeding with normal checking. . .')
@@ -183,7 +187,6 @@ def main(file_name: str):
 
     pyinstaller.close()
     py2exe.close()
-
     Logging.log_close()
 
 
@@ -200,6 +203,7 @@ if __name__ == "__main__":
 
     def handler(signal, frame):
         Logging.log_close(exit_code='Goodbye!')
+
     signal(SIGINT, handler)
     print(banner())
     _file = input('Drag/Type your executable here: ').strip('"').strip("'")

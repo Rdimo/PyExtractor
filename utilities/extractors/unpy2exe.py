@@ -9,6 +9,7 @@ import ntpath
 import marshal
 from shutil import move, Error
 from utilities import printInfo
+import utilities.modules.pyc_decompile as umpd
 
 IGNORE = [
     # added by py2exe
@@ -63,21 +64,12 @@ def extract_code_objects(pe):
     return _get_co_from_dump(dump)
 
 
-def _generate_pyc_header(IO, pyver):
-    pyver = int(pyver)
+def _generate_pyc_header(IO):
     magic = get_current_magic()
-    IO.write(magic)
-
-    if pyver >= 37:
-        IO.write(b'\0' * 4)
-        IO.write(b'\0' * 8)
-    else:
-        IO.write(b'\0' * 4)
-        if pyver >= 33:
-            IO.write(b'\0' * 4)
+    IO.write(magic + b'\0' * (16 - len(magic)))
 
 
-def dump_to_pyc(co, output_dir, python_version):
+def dump_to_pyc(co, output_dir):
     pyc_basename = ntpath.basename(co.co_filename)
     pyc_name = pyc_basename[:-3] + '.pyc'
 
@@ -88,26 +80,26 @@ def dump_to_pyc(co, output_dir, python_version):
 
         try:
             with open(destination, 'wb') as pyc:
-                _generate_pyc_header(pyc, python_version)
+                _generate_pyc_header(pyc)
                 pyc.write(marshaled_code)
         except OSError:
             pass
+
         src = os.path.join(output_dir, 'Source_code')
         extracted = os.path.join(output_dir, 'Extracted')
         if not ntpath.exists(src):
             os.makedirs(src)
         if not ntpath.exists(extracted):
             os.makedirs(extracted)
-        import utilities.modules.pyc_decompile as umpd
-        umpd.decompile_pyc(destination, src+os.sep +
-                           pyc_name[:-3]+'py', log=True)
+
+        umpd.decompile_pyc(destination, src + os.sep + pyc_name[:-3] + 'py', log=True)
         try:
             move(destination, extracted)
         except Error:
             os.remove(destination)
 
 
-def unpy2exe(filename, python_version, output_dir='.'):
+def unpy2exe(filename, output_dir='.'):
     if not os.path.exists(output_dir):
         os.makedirs(output_dir)
 
@@ -115,4 +107,4 @@ def unpy2exe(filename, python_version, output_dir='.'):
 
     code_objects = extract_code_objects(pe)
     for co in code_objects:
-        dump_to_pyc(co, output_dir, python_version)
+        dump_to_pyc(co, output_dir)
